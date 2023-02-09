@@ -105,7 +105,6 @@ class _Excel_WorkState extends State<Excel_Work> {
                     controller: a1,
                     readOnly: false,
                     decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.search),
                       hintText: "A1",
                       border: OutlineInputBorder(),
                       labelText: "A1",
@@ -301,16 +300,54 @@ class _Excel_WorkState extends State<Excel_Work> {
                 height: 60,
               ),
               ElevatedButton(
-                  onPressed: () {
-                    if (sourceFile != "" && destFile != "") {
-                      if (a2.text.isEmpty || b2.text.isEmpty) {
-                        showAlerDialog(context, "Hedef Adresler Boş",
-                            const Icon(Icons.error));
+                  onPressed: () async {
+                    if (toDest) {
+                      if (sourceFile != "" && destFile != "") {
+                        if (a2.text.isEmpty || b2.text.isEmpty) {
+                          showAlerDialog(context, "Hedef Adresler Boş",
+                              const Icon(Icons.error));
+                        } else {
+                          var data = {};
+
+                          if (dropdownValue == "Özel") {
+                            print("here");
+                            if (a1.text.isEmpty || b1.text.isEmpty) {
+                              showAlerDialog(context, "Kaynak Adresler boş",
+                                  const Icon(Icons.error));
+                            } else {
+                              data =
+                                  excelReadManuel(sourceFile, a1.text, b1.text);
+                            }
+                          } else {
+                            data = excelReadAuto(sourceFile, dropdownValue);
+                          }
+                          excelWriteManuel(
+                            destFile,
+                            data,
+                            a2.text,
+                            b2.text,
+                          );
+                          showAlerDialog(
+                              context, "tamam", const Icon(Icons.done));
+
+                          setState(() {
+                            a1.clear();
+                            b1.clear();
+                            a2.clear();
+                            b2.clear();
+                          });
+                        }
                       } else {
+                        showAlerDialog(context, "dosya seçilmedi",
+                            const Icon(Icons.error));
+                      }
+                    } else {
+                      if (sourceFile != "") {
                         var data = {};
+                        String? selectedDirectory =
+                            await FilePicker.platform.getDirectoryPath();
 
                         if (dropdownValue == "Özel") {
-                          print("here");
                           if (a1.text.isEmpty || b1.text.isEmpty) {
                             showAlerDialog(context, "Kaynak Adresler boş",
                                 const Icon(Icons.error));
@@ -321,11 +358,9 @@ class _Excel_WorkState extends State<Excel_Work> {
                         } else {
                           data = excelReadAuto(sourceFile, dropdownValue);
                         }
-                        excelWriteManuel(
-                          destFile,
+                        excelNewFile(
+                          selectedDirectory!,
                           data,
-                          a2.text,
-                          b2.text,
                         );
                         showAlerDialog(
                             context, "tamam", const Icon(Icons.done));
@@ -333,13 +368,11 @@ class _Excel_WorkState extends State<Excel_Work> {
                         setState(() {
                           a1.clear();
                           b1.clear();
-                          a2.clear();
-                          b2.clear();
                         });
+                      } else {
+                        showAlerDialog(context, "dosya seçilmedi",
+                            const Icon(Icons.error));
                       }
-                    } else {
-                      showAlerDialog(
-                          context, "dosya seçilmedi", const Icon(Icons.error));
                     }
                   },
                   style: ElevatedButton.styleFrom(

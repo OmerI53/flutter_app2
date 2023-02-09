@@ -440,6 +440,30 @@ Future<void> excelDownloadNotMatch(
   }
 }
 
+Future<void> excelNewFile(String path, Map data) async {
+  var excel = Excel.createExcel();
+  var sheet = excel[excel.getDefaultSheet()!];
+
+  int randanme = Random().nextInt(10000);
+  String s = "$path/$randanme.xlsx";
+
+  int i = 0;
+  for (var key in data.keys) {
+    sheet.cell(CellIndex.indexByColumnRow(columnIndex: 0, rowIndex: i)).value =
+        key;
+    sheet.cell(CellIndex.indexByColumnRow(columnIndex: 1, rowIndex: i)).value =
+        data[key];
+    i++;
+  }
+
+  List<int>? fileBytes = excel.save();
+  if (fileBytes != null) {
+    File(join(s))
+      ..createSync(recursive: true)
+      ..writeAsBytesSync(fileBytes);
+  }
+}
+
 void main(List<String> args) {
   String s =
       "16/01/2023-17:23:13 - 2300.0 - RECEP KOTİL*0134*hopa kontor*137969974443*FAST";
