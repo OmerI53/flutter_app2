@@ -1,3 +1,4 @@
+import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app2/Excel_Work_Page.dart';
 import 'package:flutter_app2/Home_page.dart';
@@ -36,7 +37,7 @@ class _RootPageState extends State<RootPage> {
       appBar: currentPage != 1
           ? null
           : AppBar(
-              title: const Text("Flutter App 1"),
+              title: const Text("Excel Uygulama"),
             ),
       body: page[currentPage],
       bottomNavigationBar: NavigationBar(

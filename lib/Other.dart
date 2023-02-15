@@ -27,7 +27,7 @@ class _OtherState extends State<Other> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("title"), actions: [
+      appBar: AppBar(title: const Text("Bilgi Karşılaştırma"), actions: [
         GestureDetector(
           child: ElevatedButton(
               onPressed: () async {
@@ -42,7 +42,7 @@ class _OtherState extends State<Other> {
                       selectedDirectory!, allList[0], allList[1], allList[2]);
                 });
               },
-              child: Icon(Icons.download)),
+              child: const Icon(Icons.download)),
         )
       ]),
       floatingActionButton: FloatingActionButton(
@@ -52,27 +52,31 @@ class _OtherState extends State<Other> {
           allList = compareExcel(flist1, flist2);
           setState(() {});
         },
-        child: const Icon(Icons.start),
+        child: const Icon(Icons.start_outlined),
       ),
       body: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const SizedBox(
-              height: 0,
+              height: 175,
             ),
-            Visibility(
-                visible: bankaFile != "",
+            IconTheme(
+                data: IconThemeData(
+                    color: bankaFile != "" ? Colors.green : Colors.red),
                 child: const Icon(
                   Icons.folder,
-                  size: 60,
+                  size: 80,
                 )),
             const SizedBox(
-              height: 0,
+              height: 10,
             ),
             SizedBox(
               width: 200,
+              height: 15,
               child: Center(child: Text(bankaFile)),
+            ),
+            const SizedBox(
+              height: 6,
             ),
             Row(
               children: [
@@ -90,7 +94,7 @@ class _OtherState extends State<Other> {
                         // User canceled the picker
                       }
                     },
-                    child: const Text("Banka")),
+                    child: const Text("Banka", style: TextStyle(fontSize: 16))),
                 const SizedBox(
                   width: 5,
                 ),
@@ -105,6 +109,9 @@ class _OtherState extends State<Other> {
                 )
               ],
             ),
+            const SizedBox(
+              height: 60,
+            ),
             ElevatedButton(
               onPressed: () {
                 if (allList.isNotEmpty) {
@@ -115,7 +122,7 @@ class _OtherState extends State<Other> {
                       context, "Liste Boş", const Icon(Icons.warning));
                 }
               },
-              child: const Text("Eşeleşen"),
+              child: const Text("Eşeleşen", style: TextStyle(fontSize: 16)),
               style: ElevatedButton.styleFrom(
                   backgroundColor:
                       allList.isNotEmpty ? Colors.green : Colors.blue),
@@ -123,23 +130,27 @@ class _OtherState extends State<Other> {
           ],
         ),
         Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const SizedBox(
-              height: 0,
+              height: 175,
             ),
-            Visibility(
-                visible: sistemFile != "",
+            IconTheme(
+                data: IconThemeData(
+                    color: sistemFile != "" ? Colors.green : Colors.red),
                 child: const Icon(
                   Icons.folder,
-                  size: 60,
+                  size: 80,
                 )),
             const SizedBox(
-              height: 0,
+              height: 10,
             ),
             SizedBox(
               width: 200,
+              height: 15,
               child: Center(child: Text(sistemFile)),
+            ),
+            const SizedBox(
+              height: 6,
             ),
             Row(
               children: [
@@ -157,7 +168,8 @@ class _OtherState extends State<Other> {
                         // User canceled the picker
                       }
                     },
-                    child: const Text("Sistem")),
+                    child:
+                        const Text("Sistem", style: TextStyle(fontSize: 16))),
                 const SizedBox(
                   width: 5,
                 ),
@@ -172,6 +184,9 @@ class _OtherState extends State<Other> {
                 )
               ],
             ),
+            const SizedBox(
+              height: 60,
+            ),
             ElevatedButton(
               onPressed: () {
                 if (allList.isNotEmpty) {
@@ -182,7 +197,7 @@ class _OtherState extends State<Other> {
                       context, "Liste Boş", const Icon(Icons.warning));
                 }
               },
-              child: const Text("Bulunamayan"),
+              child: const Text("Bulunamayan", style: TextStyle(fontSize: 16)),
               style: ElevatedButton.styleFrom(
                   backgroundColor:
                       allList.isNotEmpty ? Colors.red : Colors.blue),
