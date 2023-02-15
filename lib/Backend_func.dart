@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:excel/excel.dart';
 import 'package:path_provider/path_provider.dart';
+import 'dart:ui';
 
 Map excelReadManuel(var file, String p1, String p2) {
   //Rows -> X ; Collums ->Y
@@ -464,8 +465,7 @@ Future<void> excelNewFile(String path, Map data) async {
   }
 }
 
-void main(List<String> args) {
-  String s =
-      "16/01/2023-17:23:13 - 2300.0 - RECEP KOTİL*0134*hopa kontor*137969974443*FAST";
-  String s2 = "HOPA - 16.01.2023 17:51:30 - 7300 - HAVALE 17.23";
+void main(args) {
+  String s = "/Users/omerislam/desktop/banka.xlsx";
+  List a = getBankFile(s);
 }

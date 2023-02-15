@@ -10,11 +10,14 @@ class HomePage extends StatelessWidget {
         body: Center(
       child: Column(children: [
         const Padding(padding: EdgeInsets.all(10.0)),
-        const Text("Excelleri 'Excel Workbook' olarak kaydedin, çalıştırın"),
+        const Text(
+          "Exceli 'Excel Çalışma Dosyası' olarak kaydedin, çalıştırın",
+          style: TextStyle(fontSize: 25),
+        ),
         Image.asset(
           "Images/luks-karadeniz.png",
-          height: 400,
-          width: 400,
+          height: 500,
+          width: 500,
         )
       ]),
     ));

@@ -1,4 +1,4 @@
-import 'package:desktop_window/desktop_window.dart';
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app2/Excel_Work_Page.dart';
 import 'package:flutter_app2/Home_page.dart';
@@ -6,6 +6,16 @@ import 'package:flutter_app2/Other.dart';
 
 void main() {
   runApp(const MyApp());
+
+  doWhenWindowReady(() {
+    final initialSize = Size(850, 720);
+    final minSize = Size(850, 720);
+    final maxSize = Size(850, 720);
+    appWindow.maxSize = maxSize;
+    appWindow.minSize = minSize;
+    appWindow.size = initialSize; //default size
+    appWindow.show();
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -44,7 +54,8 @@ class _RootPageState extends State<RootPage> {
         destinations: const [
           NavigationDestination(icon: Icon(Icons.work), label: "Excel İşlem"),
           NavigationDestination(icon: Icon(Icons.home), label: "Ana Sayfa"),
-          NavigationDestination(icon: Icon(Icons.settings), label: "Diğer"),
+          NavigationDestination(
+              icon: Icon(Icons.compare), label: "Karşılaştırma"),
         ],
         onDestinationSelected: (int index) {
           setState(() {

@@ -52,7 +52,7 @@ class _OtherState extends State<Other> {
           allList = compareExcel(flist1, flist2);
           setState(() {});
         },
-        child: const Icon(Icons.start_outlined),
+        child: const Icon(Icons.start),
       ),
       body: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         Column(
@@ -94,7 +94,8 @@ class _OtherState extends State<Other> {
                         // User canceled the picker
                       }
                     },
-                    child: const Text("Banka", style: TextStyle(fontSize: 16))),
+                    child: const Text("Banka Dosya",
+                        style: TextStyle(fontSize: 16))),
                 const SizedBox(
                   width: 5,
                 ),
@@ -106,7 +107,7 @@ class _OtherState extends State<Other> {
                   },
                   child: Icon(Icons.close),
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                )
+                ),
               ],
             ),
             const SizedBox(
@@ -127,6 +128,14 @@ class _OtherState extends State<Other> {
                   backgroundColor:
                       allList.isNotEmpty ? Colors.green : Colors.blue),
             ),
+            const SizedBox(
+              height: 30,
+            ),
+            IconButton(
+              onPressed: (() {}),
+              icon: const Icon(Icons.question_mark_outlined),
+              tooltip: "Banka sonu yazıları silin",
+            )
           ],
         ),
         Column(
@@ -168,8 +177,8 @@ class _OtherState extends State<Other> {
                         // User canceled the picker
                       }
                     },
-                    child:
-                        const Text("Sistem", style: TextStyle(fontSize: 16))),
+                    child: const Text("Sistem Dosya",
+                        style: TextStyle(fontSize: 16))),
                 const SizedBox(
                   width: 5,
                 ),

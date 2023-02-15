@@ -16,7 +16,7 @@ class Excel_Work extends StatefulWidget {
 }
 
 class _Excel_WorkState extends State<Excel_Work> {
-  bool toDest = true;
+  bool toDest = false;
   bool isCommison = false;
   bool isToEnd = false;
   bool isSevice = false;
@@ -40,6 +40,14 @@ class _Excel_WorkState extends State<Excel_Work> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Bilgi Yazma"),
+          actions: [
+            IconButton(
+              onPressed: (() {}),
+              icon: const Icon(Icons.question_mark),
+              tooltip:
+                  "Formüller:\nYazhane:Komisyon\nOtobüs: Bilet*0.80-servis (Samsun için 0.75)",
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Row(children: [
@@ -93,7 +101,7 @@ class _Excel_WorkState extends State<Excel_Work> {
                               }
                             },
                             child: const Text(
-                              "Nerden",
+                              "Kaynak Dosya",
                               style: TextStyle(fontSize: 16),
                             )),
                         const SizedBox(
@@ -194,7 +202,7 @@ class _Excel_WorkState extends State<Excel_Work> {
                                   // User canceled the picker
                                 }
                               },
-                              child: const Text("Nereye",
+                              child: const Text("Yazılacak Dosya",
                                   style: TextStyle(fontSize: 16))),
                           const SizedBox(
                             width: 8,
@@ -300,7 +308,8 @@ class _Excel_WorkState extends State<Excel_Work> {
                 const SizedBox(
                   height: 4,
                 ),
-                const Text("Yeni Dosya", style: TextStyle(fontSize: 18)),
+                const Text("Yeni Dosya Oluştur",
+                    style: TextStyle(fontSize: 18)),
                 Switch(
                     value: !toDest,
                     onChanged: (bool? newbool) {
